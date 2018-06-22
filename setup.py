@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 import os
-import pyscada
+from pyscada import gpio
 
 
 CLASSIFIERS = [
@@ -20,10 +20,10 @@ CLASSIFIERS = [
     'Topic :: Scientific/Engineering :: Visualization'
 ]
 setup(
-    author=pyscada.__author__,
+    author=gpio.__author__,
     author_email="info@martin-schroeder.net",
     name='pyscada-gpio',
-    version=pyscada.__version__,
+    version=gpio.__version__,
     description='GPIO extension for PyScada a Python and Django based Open Source SCADA System',
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     url='http://www.github.com/trombastic/PyScada',
@@ -38,4 +38,5 @@ setup(
     include_package_data=True,
     zip_safe=False,
     test_suite='runtests.main',
+    namespace_packages=['pyscada']
 )
