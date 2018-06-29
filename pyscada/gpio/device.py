@@ -60,7 +60,7 @@ class Device:
 
             return output
 
-        def write_data(self, variable_id, value):
+        def write_data(self, variable_id, value, task):
             """
             write value to single gpio pin
             """
