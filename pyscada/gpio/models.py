@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 @python_2_unicode_compatible
 class GPIODevice(models.Model):
-    gpio_device = models.OneToOneField(Device, null=True, blank=True)
+    gpio_device = models.OneToOneField(Device, null=True, blank=True, on_delete=models.CASCADE)
     board_choices = (('rpi', 'Raspberry Pi'),)
     board = models.CharField(max_length=254, choices=board_choices, default='rpi')
 
@@ -25,7 +25,7 @@ class GPIODevice(models.Model):
 
 @python_2_unicode_compatible
 class GPIOVariable(models.Model):
-    gpio_variable = models.OneToOneField(Variable, null=True, blank=True)
+    gpio_variable = models.OneToOneField(Variable, null=True, blank=True, on_delete=models.CASCADE)
     gpio_mode_choices = (
         ('Polling', (('input', 'Input'),
                      ('input_pull_up', 'Input Pull Up'),
