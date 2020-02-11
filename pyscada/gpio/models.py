@@ -5,8 +5,6 @@ from pyscada.models import Device
 from pyscada.models import Variable
 
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 import logging
 
@@ -42,16 +40,18 @@ class GPIOVariable(models.Model):
     gpio_pin = models.CharField(max_length=254, help_text="pin number in Board notation (pin number of the pin header)")
 
     def __str__(self):
-        return self.gpio_device.short_name
+        return self.gpio_variable.short_name
 
 
-@receiver(post_save, sender=GPIODevice)
-@receiver(post_save, sender=GPIOVariable)
-def _reinit_daq_daemons(sender, instance, **kwargs):
-    """
-    update the daq daemon configuration when changes be applied in the models
-    """
-    if type(instance) is GPIODevice:
-        post_save.send_robust(sender=Device, instance=instance.gpio_device)
-    elif type(instance) is GPIOVariable:
-        post_save.send_robust(sender=Variable, instance=instance.gpio_variable)
+class ExtendedGPIODevice(Device):
+    class Meta:
+        proxy = True
+        verbose_name = 'GPIO Device'
+        verbose_name_plural = 'GPIO Devices'
+
+
+class ExtendedGPIOVariable(Variable):
+    class Meta:
+        proxy = True
+        verbose_name = 'GPIO Variable'
+        verbose_name_plural = 'GPIO Variables'
