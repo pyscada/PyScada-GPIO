@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class GPIODevice(models.Model):
     gpio_device = models.OneToOneField(Device, null=True, blank=True, on_delete=models.CASCADE)
     board_choices = (('rpi', 'Raspberry Pi'),)
-    board = models.CharField(max_length=254, choices=board_choices, default='rpi')
+    board = models.CharField(max_length=254, choices=board_choices)
 
     def __str__(self):
         return self.gpio_device.short_name
