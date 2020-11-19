@@ -40,7 +40,7 @@ class GPIOVariable(models.Model):
     gpio_pin = models.CharField(max_length=254, help_text="pin number in Board notation (pin number of the pin header)")
 
     def __str__(self):
-        return self.gpio_variable.short_name
+        return self.gpio_variable.name
 
 
 class ExtendedGPIODevice(Device):
