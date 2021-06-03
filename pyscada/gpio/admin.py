@@ -60,5 +60,5 @@ class GPIOVariableAdmin(VariableAdmin):
     ]
 
 
-admin_site.register(ExtendedGPIODevice, GPIODeviceAdmin)
-admin_site.register(ExtendedGPIOVariable, GPIOVariableAdmin)
+# admin_site.register(ExtendedGPIODevice, GPIODeviceAdmin)
+# admin_site.register(ExtendedGPIOVariable, GPIOVariableAdmin)

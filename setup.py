@@ -31,7 +31,7 @@ setup(
     platforms=['OS Independent'],
     classifiers=CLASSIFIERS,
     install_requires=[
-        'pyscada',
+        'pyscada>=0.7.0rc18',
         'rpi.gpio',
     ],
     packages=find_packages(exclude=["project", "project.*"]),

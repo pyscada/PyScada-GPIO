@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-try:
-    import RPi.GPIO as GPIO
-    _DRIVER_RPI_OK = True
-except ImportError:
-    GPIO = None
-    _DRIVER_RPI_OK = False
-
-from time import time
-
 import logging
 
 logger = logging.getLogger(__name__)
 _debug = 1
+
+try:
+    import RPi.GPIO as GPIO
+    _DRIVER_RPI_OK = True
+except (ImportError, RuntimeError):
+    logger.warning("Trying to import RPi.GPIO : not on a RPi or library not installed")
+    GPIO = None
+    _DRIVER_RPI_OK = False
+
+from time import time
 
 
 class Device:
@@ -47,7 +48,7 @@ class Device:
         output = []
         for item in self.variables:
             if item.gpiovariable.gpio_mode == 'output':
-                return False
+                continue
 
             timestamp = time()
             # value = None
