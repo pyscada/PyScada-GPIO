@@ -6,13 +6,11 @@ from pyscada.models import Device
 from pyscada.models import Variable
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-@python_2_unicode_compatible
 class GPIODevice(models.Model):
     gpio_device = models.OneToOneField(Device, null=True, blank=True, on_delete=models.CASCADE)
     board_choices = (('rpi', 'Raspberry Pi'),)
@@ -30,7 +28,6 @@ class GPIODevice(models.Model):
         return self.gpio_device.short_name
 
 
-@python_2_unicode_compatible
 class GPIOVariable(models.Model):
     gpio_variable = models.OneToOneField(Variable, null=True, blank=True, on_delete=models.CASCADE)
     gpio_mode_choices = (
