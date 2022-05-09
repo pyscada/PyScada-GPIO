@@ -2,24 +2,16 @@
 from __future__ import unicode_literals
 
 from pyscada.gpio import PROTOCOL_ID
-from pyscada.gpio.models import GPIODevice
-from pyscada.gpio.models import GPIOVariable
+from pyscada.gpio.models import GPIODevice, ExtendedGPIODevice
+from pyscada.gpio.models import GPIOVariable, ExtendedGPIOVariable
 from pyscada.admin import DeviceAdmin
 from pyscada.admin import VariableAdmin
 from pyscada.admin import admin_site
 from pyscada.models import Device, DeviceProtocol
-from pyscada.models import Variable
 from django.contrib import admin
 import logging
 
 logger = logging.getLogger(__name__)
-
-
-class ExtendedGPIODevice(Device):
-    class Meta:
-        proxy = True
-        verbose_name = 'GPIO Device'
-        verbose_name_plural = 'GPIO Devices'
 
 
 class GPIODeviceAdminInline(admin.StackedInline):
@@ -41,13 +33,6 @@ class GPIODeviceAdmin(DeviceAdmin):
     inlines = [
         GPIODeviceAdminInline
     ]
-
-
-class ExtendedGPIOVariable(Variable):
-    class Meta:
-        proxy = True
-        verbose_name = 'GPIO Variable'
-        verbose_name_plural = 'GPIO Variables'
 
 
 class GPIOVariableAdminInline(admin.StackedInline):
@@ -75,5 +60,5 @@ class GPIOVariableAdmin(VariableAdmin):
     ]
 
 
-admin_site.register(ExtendedGPIODevice, GPIODeviceAdmin)
-admin_site.register(ExtendedGPIOVariable, GPIOVariableAdmin)
+# admin_site.register(ExtendedGPIODevice, GPIODeviceAdmin)
+# admin_site.register(ExtendedGPIOVariable, GPIOVariableAdmin)
