@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import importlib
 
-import pyscada
 
-__version__ = '0.7.1rc1'
-__author__ = 'Martin Schröder'
-
-default_app_config = 'pyscada.gpio.apps.PyScadaGPIOConfig'
+__version__ = "0.8.0"
+__author__ = "Martin Schröder, Camille Lavayssiere"
+__email__ = "team@pyscada.org"
+__description__ = "GPIO extension for PyScada a Python and Django based Open Source SCADA System"
+__app_name__ = "GPIO"
 
 PROTOCOL_ID = 10
 
 parent_process_list = [{'pk': PROTOCOL_ID,
-                        'label': 'pyscada.gpio',
-                        'process_class': 'pyscada.gpio.worker.Process',
+                        'label': 'pyscada.' + __app_name__.lower(),
+                        'process_class': 'pyscada.' + __app_name__.lower() + '.worker.Process',
                         'process_class_kwargs': '{"dt_set":30}',
                         'enabled': True}]
