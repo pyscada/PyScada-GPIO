@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('gpio', '0002_add_device_protocol'),
+        ("gpio", "0002_add_device_protocol"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gpiodevice',
-            name='board',
-            field=models.CharField(choices=[('rpi', 'Raspberry Pi')], max_length=254),
+            model_name="gpiodevice",
+            name="board",
+            field=models.CharField(choices=[("rpi", "Raspberry Pi")], max_length=254),
         ),
     ]
