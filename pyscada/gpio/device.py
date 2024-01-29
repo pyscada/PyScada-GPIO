@@ -63,8 +63,8 @@ class Device:
             # value = None
 
             value = GPIO.input(int(item.gpiovariable.gpio_pin))
-            if value is not None and item.update_value(value, timestamp):
-                output.append(item.create_recorded_data_element())
+            if value is not None and item.update_values([value], [timestamp]):
+                output.append(item)
 
         return output
 
@@ -82,6 +82,6 @@ class Device:
                 if not item.gpiovariable.gpio_mode == "output" or not item.writeable:
                     return False
                 GPIO.output(int(item.gpiovariable.gpio_pin), int(value))
-                if value is not None and item.update_value(value, time()):
-                    output.append(item.create_recorded_data_element())
+                if value is not None and item.update_values([value], [time()]):
+                    output.append(item)
         return output
